@@ -51,7 +51,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: "epam-learn-public-api"
+          app-name: "learn-monitoring-and-loging"
           slot-name: "Production"
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_E3E91CBEB19844668E090DD241A3E3F1 }}
           package: .

@@ -26,7 +26,7 @@ using MinimalApi.Endpoint.Configurations.Extensions;
 using MinimalApi.Endpoint.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
-
+new Exception("Cannot move further");
 builder.Services.AddEndpoints();
 
 // Use to force loading of appsettings.json of test project

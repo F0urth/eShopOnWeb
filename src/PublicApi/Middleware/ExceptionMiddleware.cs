@@ -21,15 +21,15 @@ public class ExceptionMiddleware
 
     public async Task InvokeAsync(HttpContext httpContext)
     {
-        try
-        {
-            await _next(httpContext);
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex.Message);
-            await HandleExceptionAsync(httpContext, ex);
-        }
+        // try
+        // {
+        await _next(httpContext);
+        // }
+        // catch (Exception ex)
+        // {
+        //     _logger.LogError(ex.Message);
+        //     await HandleExceptionAsync(httpContext, ex);
+        // }
     }
 
     private async Task HandleExceptionAsync(HttpContext context, Exception exception)

@@ -58,7 +58,7 @@ public class CatalogItemListPagedEndpoint : IEndpoint<IResult, ListPagedCatalogI
         var items = await _itemRepository.ListAsync(pagedSpec);
 
         var message = $"The {items?.Count} items were sent";
-        _logger.LogInformation(message);
+        _logger.LogWarning(message);
         response.CatalogItems.AddRange(items.Select(_mapper.Map<CatalogItemDto>));
         foreach (CatalogItemDto item in response.CatalogItems)
         {

@@ -81,7 +81,7 @@ builder.Services.AddCors(options =>
                           corsPolicyBuilder.AllowAnyHeader();
                       });
 });
-
+builder.Services.AddApplicationInsightsTelemetry();
 builder.Services.AddControllers();
 
 builder.Services.AddMediatR(typeof(CatalogItem).Assembly);

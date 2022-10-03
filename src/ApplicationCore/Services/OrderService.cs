@@ -17,7 +17,7 @@ using Newtonsoft.Json;
 public class OrderService : IOrderService
 {
     private static readonly HttpClient _client = new();
-    private const string FunctionUrl = "https://push-order-to-blob-af.azurewebsites.net/api/OrderItemsReserver";
+    private const string FunctionUrl = "https://test-app-smth.azurewebsites.net/api/OrderItemsReserver";
     
     private readonly IRepository<Order> _orderRepository;
     private readonly IUriComposer _uriComposer;

@@ -4,9 +4,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Microsoft.eShopWeb.Infrastructure.Identity;
 
+using Data;
+using EntityFrameworkCore.Design;
+
 public class AppIdentityDbContext : IdentityDbContext<ApplicationUser>
 {
-    public AppIdentityDbContext(DbContextOptions<AppIdentityDbContext> options)
+    public AppIdentityDbContext(DbContextOptions options)
         : base(options)
     {
     }
@@ -17,5 +20,15 @@ public class AppIdentityDbContext : IdentityDbContext<ApplicationUser>
         // Customize the ASP.NET Identity model and override the defaults if needed.
         // For example, you can rename the ASP.NET Identity table names and more.
         // Add your customizations after calling base.OnModelCreating(builder);
+    }
+}
+
+public class AppIdentityDbContextDesignFactory : IDesignTimeDbContextFactory<AppIdentityDbContext>
+{
+    public AppIdentityDbContext CreateDbContext(string[] args)
+    {
+        var optionsBuilder = new DbContextOptionsBuilder()
+            .UseSqlServer("Server=tcp:learn-database.database.windows.net,1433;Initial Catalog=LearnDatabasesIdentity;Persist Security Info=False;User ID=admin1;Password=a1d@m#in;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+        return new AppIdentityDbContext(optionsBuilder.Options);
     }
 }

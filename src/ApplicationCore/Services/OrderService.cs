@@ -61,7 +61,7 @@ public class OrderService : IOrderService
         var obj = JsonConvert.SerializeObject(order);
         var jsonContent = new StringContent(obj, Encoding.UTF8, MediaTypeNames.Application.Json);
 
-        _ = await _client.PostAsync(FunctionUrl, jsonContent);
+        var _ = await _client.PostAsync(FunctionUrl, jsonContent);
         
         await _orderRepository.AddAsync(order);
     }

@@ -12,7 +12,7 @@ public static class SaveOrderInCosmos
     private static SaveDataInCosmosService _cosmosService = new();
     
     [Function("SaveOrderInCosmos")]
-    public static async Task<HttpResponseData> Run([HttpTrigger(AuthorizationLevel.Function, "post")] HttpRequestData req,
+    public static async Task<HttpResponseData> Run([HttpTrigger(AuthorizationLevel.Anonymous, "post")] HttpRequestData req,
         FunctionContext executionContext)
     {
         var logger = executionContext.GetLogger("SaveOrderInCosmos");

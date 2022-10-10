@@ -3,6 +3,7 @@
 public class OrderItem : BaseEntity
 {
     public CatalogItemOrdered ItemOrdered { get; private set; }
+    public string ProductName => ItemOrdered.ProductName;
     public decimal UnitPrice { get; private set; }
     public int Units { get; private set; }
 

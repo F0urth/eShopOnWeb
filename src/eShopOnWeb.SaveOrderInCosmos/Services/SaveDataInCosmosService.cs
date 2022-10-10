@@ -69,6 +69,7 @@ public class SaveDataInCosmosService
         
         return dtos.Select(dto => new Item
         {
+            ProductName = dto.ProductName,
             UnitPrice = dto.UnitPrice,
             Units = dto.Units,
         }).ToList();

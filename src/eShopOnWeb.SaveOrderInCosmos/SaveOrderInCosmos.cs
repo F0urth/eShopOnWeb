@@ -11,7 +11,6 @@ public static class SaveOrderInCosmos
 {
     private static SaveDataInCosmosService _cosmosService = new();
     
-    
     [Function("SaveOrderInCosmos")]
     public static async Task<HttpResponseData> Run([HttpTrigger(AuthorizationLevel.Function, "post")] HttpRequestData req,
         FunctionContext executionContext)

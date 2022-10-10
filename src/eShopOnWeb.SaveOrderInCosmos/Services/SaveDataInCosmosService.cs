@@ -25,19 +25,32 @@ public class SaveDataInCosmosService
         Debug.WriteLine("Item created");
     }
 
-    private static Order FromDto(OrderDto dto) =>
-        new()
+    private static Order FromDto(OrderDto dto)
+    {
+        if (dto is null)
+        {
+            return null;
+        }
+        
+        return new()
         {
             Id = Guid.NewGuid().ToString(),
             OrderNumber = dto.OrderNumber,
             OrderDate = dto.OrderDate,
             Total = dto.Total,
-            ShippingAddress = FromDto(dto.ShippingAddress),
+            ShippingAddress = FromDto(dto.ShipToAddress),
             OrderItems = FromDto(dto.OrderItems)
         };
+    }
 
-    private static Address FromDto(AddressDto dto) =>
-        new()
+    private static Address FromDto(AddressDto dto)
+    {
+        if (dto is null)
+        {
+            return null;
+        }
+        
+        return new()
         {
             Street = dto.Street,
             City = dto.City,
@@ -45,14 +58,19 @@ public class SaveDataInCosmosService
             Country = dto.Country,
             ZipCode = dto.ZipCode
         };
+    }
 
-    private static List<Item> FromDto(List<ItemDto> dtos) =>
-        dtos.Select(dto => new Item
+    private static List<Item> FromDto(List<ItemDto> dtos)
+    {
+        if (dtos is null)
         {
-            ProductId = dto.ProductId,
-            ProductName = dto.ProductName,
+            return null;
+        }
+        
+        return dtos.Select(dto => new Item
+        {
             UnitPrice = dto.UnitPrice,
             Units = dto.Units,
-            PictureUrl = dto.PictureUrl
         }).ToList();
+    }
 }

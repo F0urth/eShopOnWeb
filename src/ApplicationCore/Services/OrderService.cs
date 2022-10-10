@@ -19,6 +19,7 @@ public class OrderService : IOrderService
 {
     private static readonly HttpClient _client = new();
     private const string FunctionUrl = "https://learn-cosmos-trigger.azurewebsites.net/api/SaveOrderInCosmos";
+    // private const string FunctionUrl = "http://localhost:7071/api/SaveOrderInCosmos";
     
     private readonly IRepository<Order> _orderRepository;
     private readonly IUriComposer _uriComposer;

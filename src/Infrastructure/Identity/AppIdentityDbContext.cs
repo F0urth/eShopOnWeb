@@ -9,7 +9,7 @@ using EntityFrameworkCore.Design;
 
 public class AppIdentityDbContext : IdentityDbContext<ApplicationUser>
 {
-    public AppIdentityDbContext(DbContextOptions options)
+    public AppIdentityDbContext(DbContextOptions<AppIdentityDbContext> options)
         : base(options)
     {
     }
@@ -23,12 +23,12 @@ public class AppIdentityDbContext : IdentityDbContext<ApplicationUser>
     }
 }
 
-public class AppIdentityDbContextDesignFactory : IDesignTimeDbContextFactory<AppIdentityDbContext>
-{
-    public AppIdentityDbContext CreateDbContext(string[] args)
-    {
-        var optionsBuilder = new DbContextOptionsBuilder()
-            .UseSqlServer("Server=tcp:learn-database.database.windows.net,1433;Initial Catalog=LearnDatabasesIdentity;Persist Security Info=False;User ID=admin1;Password=a1d@m#in;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
-        return new AppIdentityDbContext(optionsBuilder.Options);
-    }
-}
+// public class AppIdentityDbContextDesignFactory : IDesignTimeDbContextFactory<AppIdentityDbContext>
+// {
+//     public AppIdentityDbContext CreateDbContext(string[] args)
+//     {
+//         var optionsBuilder = new DbContextOptionsBuilder()
+//             .UseSqlServer("Server=tcp:learn-database.database.windows.net,1433;Initial Catalog=LearnDatabasesIdentity;Persist Security Info=False;User ID=admin1;Password=a1d@m#in;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+//         return new AppIdentityDbContext(optionsBuilder.Options);
+//     }
+// }

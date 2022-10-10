@@ -9,8 +9,17 @@ using Microsoft.eShopWeb.ApplicationCore.Specifications;
 
 namespace Microsoft.eShopWeb.ApplicationCore.Services;
 
+using System.Net.Http;
+using System.Net.Http.Json;
+using System.Net.Mime;
+using System.Text;
+using Newtonsoft.Json;
+
 public class OrderService : IOrderService
 {
+    private static readonly HttpClient _client = new();
+    private const string FunctionUrl = "https://learn-cosmos-trigger.azurewebsites.net/api/SaveOrderInCosmos";
+    
     private readonly IRepository<Order> _orderRepository;
     private readonly IUriComposer _uriComposer;
     private readonly IRepository<Basket> _basketRepository;
@@ -48,6 +57,11 @@ public class OrderService : IOrderService
 
         var order = new Order(basket.BuyerId, shippingAddress, items);
 
+        var obj = JsonConvert.SerializeObject(order);
+        var jsonContent = new StringContent(obj, Encoding.UTF8, MediaTypeNames.Application.Json);
+
+        _ = await _client.PostAsync(FunctionUrl, jsonContent);
+        
         await _orderRepository.AddAsync(order);
     }
 }

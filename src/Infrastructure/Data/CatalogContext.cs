@@ -10,7 +10,7 @@ using EntityFrameworkCore.Design;
 
 public class CatalogContext : DbContext
 {
-    public CatalogContext(DbContextOptions options) : base(options)
+    public CatalogContext(DbContextOptions<CatalogContext> options) : base(options)
     {
     }
 
@@ -28,12 +28,12 @@ public class CatalogContext : DbContext
         builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
 }
-public class CatalogContextDesignFactory : IDesignTimeDbContextFactory<CatalogContext>
-{
-    public CatalogContext CreateDbContext(string[] args)
-    {
-        var optionsBuilder = new DbContextOptionsBuilder()
-            .UseSqlServer("Server=tcp:learn-server-key-vault.database.windows.net,1433;Initial Catalog=LearnDatabases;Persist Security Info=False;User ID=learn-admin;Password=a1d@m#in;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
-        return new CatalogContext(optionsBuilder.Options);
-    }
-}
+// public class CatalogContextDesignFactory : IDesignTimeDbContextFactory<CatalogContext>
+// {
+//     public CatalogContext CreateDbContext(string[] args)
+//     {
+//         var optionsBuilder = new DbContextOptionsBuilder()
+//             .UseSqlServer("Server=tcp:learn-server-key-vault.database.windows.net,1433;Initial Catalog=LearnDatabases;Persist Security Info=False;User ID=learn-admin;Password=a1d@m#in;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+//         return new CatalogContext(optionsBuilder.Options);
+//     }
+// }
